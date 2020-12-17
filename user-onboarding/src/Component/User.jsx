@@ -4,6 +4,7 @@ export default function User({ details }) {
   if (!details) {
     return <h2>Awaiting for details...</h2>;
   }
+
   return (
     <div>
       <div className="user-container">
