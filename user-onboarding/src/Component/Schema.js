@@ -14,5 +14,11 @@ export default yup.object().shape({
       /(^(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.{8,}))/,
       "Password must contain at least one uppercase character and one special character"
     ),
-  tos: yup.boolean().required("Must accept Terms Of Service"),
+  role: yup
+    .string()
+    .oneOf(["enforcer", "leader", "civilian"], "Role is required"),
+  expertise: yup
+    .string()
+    .oneOf(["expert", "intermediate", "entry"], "Exp level needed to proceed"),
+  tos: yup.boolean().oneOf([true], "Must accept Terms Of Service"),
 });

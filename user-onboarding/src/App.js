@@ -11,13 +11,16 @@ const information = {
   email: "",
   password: "",
   tos: false,
+  expertise: "",
+  role: "",
 };
 
 const infoError = {
   name: "",
   email: "",
   password: "",
-  tos: false,
+  expertise: "",
+  role: "",
 };
 
 const initialUser = [];
@@ -33,7 +36,6 @@ function App() {
     axios
       .post("https://reqres.in/api/users", newUser)
       .then((res) => {
-        console.log(res);
         setUser(res.data, ...users);
         setFormValues(information);
       })
@@ -69,6 +71,8 @@ function App() {
     const newUser = {
       name: formValues.name.trim(),
       email: formValues.email.trim(),
+      role: formValues.role.trim(),
+      expertise: formValues.expertise.trim(),
       password: formValues.password,
       tos: formValues.tos,
     };
@@ -76,9 +80,7 @@ function App() {
   };
 
   useEffect(() => {
-    schema.isValid(formValues).then((valid) => {
-      setDisabled(!valid);
-    });
+    schema.isValid(formValues).then((valid) => setDisabled(!valid));
   }, [formValues]);
 
   return (
@@ -89,7 +91,7 @@ function App() {
         change={inputChange}
         submit={formSubmit}
         errors={formError}
-        disable={disabled}
+        disabled={disabled}
       />
       <User key={users.id} details={users} />;
     </div>

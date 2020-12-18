@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Form(props) {
   const { values, submit, change, disabled, errors } = props;
-  console.log(props);
+
   const onSubmit = (e) => {
     e.preventDefault();
     submit();
@@ -24,6 +24,8 @@ export default function Form(props) {
           <div>{errors.email}</div>
           <div>{errors.password}</div>
           <div>{errors.tos}</div>
+          <div>{errors.expertise}</div>
+          <div>{errors.role}</div>
         </div>
 
         <div className="input">
@@ -37,7 +39,9 @@ export default function Form(props) {
                 onChange={onChange}
               />
             </label>
+
             <br></br>
+
             <label>
               Email:
               <input
@@ -47,7 +51,9 @@ export default function Form(props) {
                 onChange={onChange}
               />
             </label>
+
             <br></br>
+
             <label for="userPassword">
               Password:
               <input
@@ -57,7 +63,61 @@ export default function Form(props) {
                 value={values.password}
               />
             </label>
+
             <br></br>
+
+            <label>
+              Expert
+              <input
+                name="expertise"
+                type="radio"
+                value="expert"
+                checked={values.expertise === "expert"}
+                onChange={onChange}
+              />
+            </label>
+
+            <label>
+              Intermediate
+              <input
+                name="expertise"
+                type="radio"
+                value="intermediated"
+                checked={values.expertise === "intermediated"}
+                onChange={onChange}
+              />
+            </label>
+
+            <label>
+              Entry
+              <input
+                name="expertise"
+                type="radio"
+                value="entry"
+                checked={values.expertise === "entry"}
+                onChange={onChange}
+              />
+            </label>
+
+            <br></br>
+
+            <label>
+              Role:
+              <select
+                className="jobs"
+                name="role"
+                value={values.role}
+                onChange={onChange}
+              >
+                <option>---Select Position---</option>
+                <option value="enforcer">Enforcer</option>
+                <option value="leader">Leader</option>
+                <option value="civilian">Civilian</option>
+              </select>
+            </label>
+
+            <br></br>
+
             <label>
               Terms Of Service
               <input
@@ -65,13 +125,14 @@ export default function Form(props) {
                 name="tos"
                 checked={values.tos}
                 onChange={onChange}
-                required
               />
             </label>
           </div>
         </div>
       </div>
-      <button disabled={disabled}>submit</button>
+      <button className="subBtn" disabled={disabled}>
+        submit
+      </button>
     </form>
   );
 }
